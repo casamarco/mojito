@@ -4,15 +4,15 @@ import alt from "../alt";
 class RepositoryActions {
 
     init() {
-        this.actions.getAllRepositories();
+        this.getAllRepositories();
     }
 
     getAllRepositories() {
 
         //TODO this is not good it must use the SDK'
 
-        $.get("/api/repositories").then(response => {
-           this.dispatch(response);
+        return (dispatch) => $.get("/api/repositories").then(response => {
+           dispatch(response);
         });
     }
 }

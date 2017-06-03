@@ -2,10 +2,10 @@ import $ from "jquery";
 import _ from "lodash";
 
 import React from "react";
-import { History } from "react-router";
+import { withRouter } from "react-router";
 import {FormattedMessage, FormattedNumber} from 'react-intl';
 
-import FluxyMixin from "alt/mixins/FluxyMixin";
+import FluxyMixin from "alt-mixins/FluxyMixin";
 
 import LocalesDropdown from "./LocalesDropdown";
 
@@ -23,7 +23,7 @@ import WorkbenchActions from "../../actions/workbench/WorkbenchActions";
 
 let Workbench = React.createClass({
 
-    mixins: [FluxyMixin, History],
+    mixins: [FluxyMixin],
 
     statics: {
         storeListeners: {
@@ -59,9 +59,9 @@ let Workbench = React.createClass({
             let newQuery = this.buildQuery(searchParams);
 
             if (window.location.search === "") {
-                this.history.replaceState(null, "/workbench?" + newQuery, null);
+                this.props.router.replace("/workbench?" + newQuery);
             } else if ( !this.isCurrentQueryEqual("?" + newQuery)) {
-                this.history.pushState(null, "/workbench?" + newQuery, null);
+                this.props.router.push("/workbench?" + newQuery);
             }
         }
     },
@@ -107,4 +107,4 @@ let Workbench = React.createClass({
     }
 });
 
-export default Workbench;
+export default withRouter(Workbench);
