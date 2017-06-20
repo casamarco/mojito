@@ -56,7 +56,8 @@ public class ReactAppController {
         "repositories",
         "project-requests",
         "workbench",
-        "settings"
+        "settings",
+        "screenshots"
     })
     @ResponseBody
     ModelAndView getIndex(HttpServletRequest httpServletRequest, @CookieValue(value = "locale", required = false, defaultValue = "en") String localeCookieValue) throws MalformedURLException, IOException {

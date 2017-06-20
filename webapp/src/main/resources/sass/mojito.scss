@@ -596,10 +596,19 @@ label.current-pageNumber {
   top: 51px !important;
 }
 
+.side-bar-root-container-screenshot {
+  top: 120px !important;
+}
+
 @media (max-width: 780px) {
   .side-bar-root-container {
     position: absolute !important;
     top: 186px !important;
+  }
+  
+  .side-bar-root-container-screenshot {
+    position: absolute !important;
+    top: 280px !important;
   }
 }
 
@@ -607,9 +616,18 @@ label.current-pageNumber {
   padding-top: 10px;
 }
 
+.side-bar-main-content-container-screenshot {  
+    padding-left: 10px; 
+}
+
 .side-bar-container {
   min-width: 30%;
   padding-top: 10px;
+}
+
+.side-bar-container-screenshot {
+  width: 300px; 
+  padding-right: 10px;
 }
 
 .side-bar-content-container {

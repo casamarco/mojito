@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">#MOJITO#app_name</string>
+    <string name="action_settings">#MOJITO#action_settings</string>
+    <string name="hello">#MOJITO#hello</string>
+    <string name="title_activity_another">#MOJITO#title_activity_another</string>
+    <string name="navigate">#MOJITO#navigate</string>
+    <string name="show_dialog">#MOJITO#show_dialog</string>
+</resources>

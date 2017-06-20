@@ -14,6 +14,7 @@ class LocationHistory {
      */
     updateLocation(router, pathname, params) {
 
+        console.log("LoactionHistory::updateLocation");
         if (window.location.pathname === pathname) {
 
             let newQuery = this.buildQuery(params);

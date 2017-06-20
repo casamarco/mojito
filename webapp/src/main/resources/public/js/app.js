@@ -11,8 +11,12 @@ import Login from "./components/Login";
 import Workbench from "./components/workbench/Workbench";
 import Repositories from "./components/repositories/Repositories";
 import Drops from "./components/drops/Drops";
+import ScreenshotsPage from "./components/screenshots/ScreenshotsPage";
 import Settings from "./components/settings/Settings";
 import WorkbenchActions from "./actions/workbench/WorkbenchActions";
+import ScreenshotsHistoryStore from "./stores/screenshots/ScreenshotsHistoryStore";
+
+
 import SearchConstants from "./utils/SearchConstants";
 import SearchParamsStore from "./stores/workbench/SearchParamsStore";
 
@@ -56,6 +60,7 @@ function startApp() {
                             <Route path="workbench" component={Workbench} onLeave={onLeaveWorkbench}/>
                             <Route path="repositories" component={Repositories} />
                             <Route path="project-requests" component={Drops}/>
+                            <Route path="screenshots" component={ScreenshotsPage} />
                             <Route path="settings" component={Settings}/>
                             <IndexRoute component={Repositories}/>
                         </Route>
@@ -79,13 +84,30 @@ function onLeaveWorkbench() {
     });
 }
 
-/**
- * Listen to history changes, when doing a POP for the workbench, initialize the SearchParamStore from the query string
- */
-browserHistory.listen(location => {
+
+function loadBasedOnLocation(location) {
     if (location.pathname === '/workbench' && location.action === 'POP') {
         WorkbenchActions.searchParamsChanged(SearchParamsStore.convertQueryToSearchParams(location.query));
     }
+
+    if (location.pathname === '/screenshots' && location.action === 'POP') {
+        console.log("reload from history store");
+        ScreenshotsHistoryStore.initStoreFromLocationQuery(location.query);
+    }
+}
+
+/**
+ * Listen to history changes, when doing a POP for the workbench, initialize 
+ * the SearchParamStore from the query string
+ * For the first load the listener is not active, need to access the current
+ * location via getCurrentLocation
+ */
+let currentLocation = browserHistory.getCurrentLocation();
+
+loadBasedOnLocation(currentLocation);
+
+browserHistory.listen(location => {
+    loadBasedOnLocation(location);
 });
 
 /**

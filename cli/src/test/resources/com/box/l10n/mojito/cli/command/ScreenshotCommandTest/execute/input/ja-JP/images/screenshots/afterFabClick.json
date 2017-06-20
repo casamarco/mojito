@@ -1,0 +1,13 @@
+{
+  "name": "afterFabClick",
+  "takenDate": 1497227088091,
+  "sequence": 3,
+  "textUnits": [
+    {
+      "name": "app_name"
+    },
+    {
+      "name": "navigate"
+    }
+  ]
+}

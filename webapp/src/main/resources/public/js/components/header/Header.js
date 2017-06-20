@@ -8,6 +8,7 @@ import Locales from "../../utils/Locales";
 
 import RepositoryActions from "../../actions/RepositoryActions";
 import WorkbenchActions from "../../actions/workbench/WorkbenchActions";
+import ScreenshotsPageActions from "../../actions/screenshots/ScreenshotsPageActions";
 import SearchConstants from "../../utils/SearchConstants";
 
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon, FormControl} from 'react-bootstrap';
@@ -53,6 +54,10 @@ let Header = React.createClass({
             "changedParam": SearchConstants.UPDATE_ALL
         });
     },
+    
+    updateScreenshotParamsForDefaultView: function() {
+       ScreenshotsPageActions.resetScreenshotSearchParams(); 
+    },
 
     render: function () {
         return (
@@ -69,6 +74,9 @@ let Header = React.createClass({
                     </li>
                     <li className={(this.props.router.isActive("/project-requests")) ? "active" : ""}>
                         <Link onClick={this.updateSearchParamsForDefaultView} to="/project-requests"><FormattedMessage id="header.projectRequests" /></Link>
+                    </li>
+                    <li className={(this.props.router.isActive("/screenshots")) ? "active" : ""}>
+                        <Link onClick={this.updateScreenshotParamsForDefaultView} to="/screenshots"><FormattedMessage id="header.screenshots" /></Link>
                     </li>
                 </Nav>
                 <Nav pullRight={true}>
